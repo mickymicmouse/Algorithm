@@ -1,8 +1,17 @@
 from collections import deque
 
-def bfs():
+def bfs(start):
+    visited[s]=1
     queue=deque()
-
+    queue.append(start)
+    cnt=0
+    while queue:
+        for k in dic[queue.popleft()]:
+            if visited[k]==0:
+                visited[k]=1
+                cnt+=1
+                queue.append(k)
+    return cnt
 
 
 T = int(input())
@@ -14,6 +23,15 @@ for i in range(T):
         dic[s]=set()
     for j in range(M):
         a,b = list(map(int,input().split(' ')))
-        dic[a]=b
-        dic[b]=a
+        dic[a].add(b)
+        dic[b].add(a)
+    visited=[0 for _ in range(N+1)]
+    count=0
+    for s in dic:
+        
+        if visited[s]==0:
+            route = bfs(s)
+            count+=route
+    print(count)
+    
     
