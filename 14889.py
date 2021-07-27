@@ -8,7 +8,6 @@ select=[0]*n
 
 
 
-
 def dfs(idx, cnt):
     global result
     if cnt==n//2:
